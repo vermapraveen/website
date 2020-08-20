@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>df2f4b2c-ee03-4246-ae78-ba726d08392b</UserSecretsId>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,7 @@
+﻿@using Westwind.AspNetCore.Markdown;
+
+@model Pkv.View.Pages.Shared.ViewModels.BlogDataViewModel
+
+@await Component.InvokeAsync("BlogIntro", new Pkv.View.Models.BlogIntroModel
+{ title = Model.BlogIntro.Title, slug = Model.BlogIntro.Slug, tags = Model.BlogIntro.GetTags, intro = Model.BlogIntro.Intro })
+@Markdown.ParseHtmlString(Model.BlogContent)

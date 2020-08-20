@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30330.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pkv.View", "Pkv.View\Pkv.View.csproj", "{8383CB04-619B-451A-8A1C-4837C1EFF317}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pkv.Github.Common", "Pkv.Github.Common\Pkv.Github.Common.csproj", "{70CAED24-9B2C-4801-8FBC-7D09E80C639C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8383CB04-619B-451A-8A1C-4837C1EFF317}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8383CB04-619B-451A-8A1C-4837C1EFF317}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8383CB04-619B-451A-8A1C-4837C1EFF317}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8383CB04-619B-451A-8A1C-4837C1EFF317}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70CAED24-9B2C-4801-8FBC-7D09E80C639C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70CAED24-9B2C-4801-8FBC-7D09E80C639C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70CAED24-9B2C-4801-8FBC-7D09E80C639C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70CAED24-9B2C-4801-8FBC-7D09E80C639C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7FD99131-3DDD-4676-BA65-E1B85E263296}
+	EndGlobalSection
+EndGlobal

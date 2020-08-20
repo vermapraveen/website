@@ -1,0 +1,11 @@
+﻿@page "{uniqueName?}"
+@model Pkv.View.Pages.blogs.IndexModel
+
+@if (string.IsNullOrEmpty(Model.BlogUniqueName))
+{
+    @await Component.InvokeAsync("BlogList")
+}
+else
+{
+    @await Component.InvokeAsync("BlogPage" , new { blogUniqueName = Model.BlogUniqueName })
+}
