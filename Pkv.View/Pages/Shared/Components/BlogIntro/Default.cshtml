@@ -6,15 +6,18 @@
             <h5 class="card-title">@Model.title</h5>
             <p class="card-text">@Model.intro</p>
 
-            <p class="card-text"><small class="text-muted">Published on @String.Format("{0:dd/MM/yyyy}", Model.date)</small></p>
+            @if (@Model.date > DateTime.MinValue)
+            {
+                <p class="card-text"><small class="text-muted">Published on @String.Format("{0:dd/MM/yyyy}", Model.date)</small></p>
+            }
             @foreach (var tag in @Model.tags)
-        {
-            <a href="https://www.praveenkv.com">@string.Format(" {0} ", tag)</a>
-        }
+            {
+                <a href="https://www.praveenkv.com">@string.Format(" {0} ", tag)</a>
+            }
 
-            @if(@Model.read)
-            {            
-                @await Component.InvokeAsync("BlogLink", new { uniqueName = Model.slug})
+            @if (@Model.read)
+            {
+                @await Component.InvokeAsync("BlogLink", new { uniqueName = Model.slug })
             }
         </div>
     </div>

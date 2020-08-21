@@ -3,11 +3,12 @@
 @foreach (var item in Model)
 {
     @await Component.InvokeAsync("BlogIntro", new Pkv.View.Models.BlogIntroModel
-                                                    {
-                                                            title = item.Title,
-                                                            slug = item.Slug,
-                                                            tags = item.GetTags,
-                                                            intro = item.Intro,
-                                                            read = true
-                                                    })
+{
+    title = item.Title,
+    slug = item.Slug,
+    tags = item.GetTags,
+    intro = item.Intro,
+    read = true,
+    date = item.PublishedDate
+})
 }
