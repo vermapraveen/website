@@ -1,16 +1,21 @@
 ﻿@model Pkv.View.Models.BlogIntroModel
 
-<div class="card border-light mb-3">
-    <div class="card-body">
-        <h5 class="card-title">@Model.title</h5>
-        <p class="card-text">@Model.intro</p>
+<div>
+    <div class="card border-light mb-3">
+        <div class="card-body">
+            <h5 class="card-title">@Model.title</h5>
+            <p class="card-text">@Model.intro</p>
 
-        @foreach (var tag in @Model.tags)
+            <p class="card-text"><small class="text-muted">Published on @String.Format("{0:dd/MM/yyyy}", Model.date)</small></p>
+            @foreach (var tag in @Model.tags)
         {
             <a href="https://www.praveenkv.com">@string.Format(" {0} ", tag)</a>
         }
 
-
-        @await Component.InvokeAsync("BlogLink", new { uniqueName = Model.slug})
+            @if(@Model.read)
+            {            
+                @await Component.InvokeAsync("BlogLink", new { uniqueName = Model.slug})
+            }
+        </div>
     </div>
 </div>

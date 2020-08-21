@@ -14,5 +14,6 @@ namespace Pkv.View.Models
         public string[] tags { get; set; }
         public DateTime date { get; set; }
         public string intro { get; set; }
+        public bool read { get; set; }
     }
 }

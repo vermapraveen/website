@@ -1,5 +1,13 @@
-﻿@for (int i = 0; i < 3; i++)
+﻿@model IEnumerable<Pkv.View.Pages.Shared.ViewModels.BlogIntroViewModel>
+
+@foreach (var item in Model)
 {
     @await Component.InvokeAsync("BlogIntro", new Pkv.View.Models.BlogIntroModel
-{ title = "For List", slug = "how-http-evolved-via-rfc", tags = new[] { "c#", "http", "networking" }, intro = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." })
+                                                    {
+                                                            title = item.Title,
+                                                            slug = item.Slug,
+                                                            tags = item.GetTags,
+                                                            intro = item.Intro,
+                                                            read = true
+                                                    })
 }

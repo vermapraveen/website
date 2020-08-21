@@ -7,12 +7,14 @@
 
   <ItemGroup>
     <None Remove="blogs\test.md" />
+    <None Remove="Pages\Blogs\list.yaml" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="blogs\test.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="blogs\blogList.yaml" />
   </ItemGroup>
 
   <ItemGroup>
