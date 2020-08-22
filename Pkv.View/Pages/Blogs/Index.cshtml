@@ -1,4 +1,14 @@
 ﻿@page "{uniqueName?}"
 @model Pkv.View.Pages.blogs.IndexModel
+@inject Pkv.Common.IDebugInfoHelper debugInfoHelper
 
+@{
+    debugInfoHelper.Reset();
+    var traceRef = debugInfoHelper.Start($"BlogsPage/{@Model.BlogUniqueName}");
+}
 @await Component.InvokeAsync("BlogPage", new { blogUniqueName = Model.BlogUniqueName })
+
+@{
+    debugInfoHelper.End(traceRef);
+    debugInfoHelper.ConsolePrintFormattedDebugInfo();
+}

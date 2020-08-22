@@ -1,14 +1,23 @@
 ﻿@model IEnumerable<Pkv.View.Pages.Shared.ViewModels.BlogIntroViewModel>
 
+@inject Pkv.Common.IDebugInfoHelper debugInfoHelper
+@{
+    var traceRef = debugInfoHelper.Start("BlogListVc.View");
+}
 @foreach (var item in Model)
 {
-    @await Component.InvokeAsync("BlogIntro", new Pkv.View.Models.BlogIntroModel
-{
-    title = item.Title,
-    slug = item.Slug,
-    tags = item.GetTags,
-    intro = item.Intro,
-    read = true,
-    date = item.PublishedDate
-})
+    @await Component.InvokeAsync(
+    "BlogIntro", 
+    new Pkv.View.Models.BlogIntroModel
+    {
+        title = item.Title,
+        slug = item.Slug,
+        tags = item.GetTags,
+        intro = item.Intro,
+        read = true,
+        date = item.PublishedDate
+    })
+}
+@{
+    debugInfoHelper.End(traceRef);
 }

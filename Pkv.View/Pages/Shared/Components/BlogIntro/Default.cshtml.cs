@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 
 using Pkv.View.Models;
 
-using System;
-
 namespace Pkv.View.Components
 {
     public class BlogIntroViewComponent : ViewComponent
@@ -15,7 +13,6 @@ namespace Pkv.View.Components
         }
         public IViewComponentResult Invoke(BlogIntroModel blogIntroModel)
         {
-            Console.Out.WriteLine($"Components/BlogIntroViewComponent/Invoke/");
             return View(blogIntroModel);
         }
     }

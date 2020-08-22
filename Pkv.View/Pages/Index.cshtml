@@ -1,7 +1,19 @@
 ﻿@page "{handler?}"
 @model IndexModel
+@inject Pkv.Common.IDebugInfoHelper debugInfoHelper
+
+@{
+    debugInfoHelper.Reset();
+    var traceRef = debugInfoHelper.Start("IndexPage");
+}
 @{
     ViewData["Title"] = "Home";
 }
 
 @await Component.InvokeAsync("BlogPage", new { blogUniqueName = Model.BlogUniqueName })
+
+
+@{
+    debugInfoHelper.End(traceRef);
+    debugInfoHelper.ConsolePrintFormattedDebugInfo();
+}

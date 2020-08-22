@@ -1,2 +1,14 @@
 ﻿@page
+@inject Pkv.Common.IDebugInfoHelper debugInfoHelper
+
+@{
+    debugInfoHelper.Reset();
+    var traceRef = debugInfoHelper.Start("BlogsPage");
+}
+
 @await Component.InvokeAsync("BlogList")
+
+@{
+    debugInfoHelper.End(traceRef);
+    debugInfoHelper.ConsolePrintFormattedDebugInfo();
+}

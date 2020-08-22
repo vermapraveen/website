@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
+using Pkv.Common;
 using Pkv.Github.Common;
 using Pkv.View.Pages.Shared.ViewModels;
 
@@ -15,11 +16,13 @@ namespace Pkv.View.Pages.Shared
     {
         private readonly IWebHostEnvironment hostingEnvironment;
         private readonly GithubConfigModel _githubConfigs;
+        private readonly IDebugInfoHelper _debugInfoHelper;
 
-        public CommonLogic(IWebHostEnvironment hostingEnvironment, GithubConfigModel githubOptions)
+        public CommonLogic(IWebHostEnvironment hostingEnvironment, GithubConfigModel githubOptions, IDebugInfoHelper debugInfoHelper)
         {
             this.hostingEnvironment = hostingEnvironment;
             _githubConfigs = githubOptions;
+            _debugInfoHelper = debugInfoHelper;
         }
 
         public async Task<List<BlogIntroViewModel>> GetListOfBlogs()
@@ -27,35 +30,49 @@ namespace Pkv.View.Pages.Shared
             string blogContent;
             if (hostingEnvironment.IsDevelopment())
             {
-                string localFile = GetLocalFile("blogs/blogList.yaml"); 
+                var refTrace1 = _debugInfoHelper.Start("GetListOfBlogs.Local");
+                string localFile = GetLocalFile("blogs/blogList.yaml");
                 blogContent = await File.ReadAllTextAsync(localFile);
+                _debugInfoHelper.End(refTrace1);
             }
             else
             {
+                var refTrace1 = _debugInfoHelper.Start("GetListOfBlogs.Network");
                 GithubFileProvider githubFileProvider = new GithubFileProvider();
                 blogContent = await githubFileProvider.GetBlogList($"blogList.yaml", _githubConfigs);
+                _debugInfoHelper.End(refTrace1);
             }
 
+            var refTrace3 = _debugInfoHelper.Start("DeserializeYamlList");
             var deserializer = new YamlDotNet.Serialization.Deserializer();
             var items = deserializer.Deserialize<List<BlogIntroViewModel>>(blogContent);
+            _debugInfoHelper.End(refTrace3);
+
             return items;
         }
 
         public async Task<BlogDataViewModel> GetBlogData(string blogUniqueName)
         {
+
             string blogContent;
             if (hostingEnvironment.IsDevelopment())
             {
+                var refTrace1 = _debugInfoHelper.Start("GetBlogData.Local");
                 string localFile = GetLocalFile("blogs/test.md");
-                blogContent = await File.ReadAllTextAsync(localFile); ;
+                blogContent = await File.ReadAllTextAsync(localFile);
+                _debugInfoHelper.End(refTrace1);
             }
             else
             {
+                var refTrace1 = _debugInfoHelper.Start("GetBlogData.Network");
                 GithubFileProvider githubFileProvider = new GithubFileProvider();
                 blogContent = await githubFileProvider.GetFile($"{blogUniqueName}.md", _githubConfigs);
+                _debugInfoHelper.End(refTrace1);
             }
 
+            var refTrace3 = _debugInfoHelper.Start("DeserializeYamlIntro");
             var blogIntro = blogContent.GetFrontMatter<BlogIntroViewModel>();
+            _debugInfoHelper.End(refTrace3);
 
             var blogData = new BlogDataViewModel
             {

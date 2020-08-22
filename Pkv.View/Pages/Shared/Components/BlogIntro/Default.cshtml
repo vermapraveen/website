@@ -1,5 +1,10 @@
 ﻿@model Pkv.View.Models.BlogIntroModel
 
+@inject Pkv.Common.IDebugInfoHelper debugInfoHelper
+
+@{
+    var traceRef = debugInfoHelper.Start("BlogIntroVc.View");
+}
 <div>
     <div class="card border-light mb-3">
         <div class="card-body">
@@ -22,3 +27,6 @@
         </div>
     </div>
 </div>
+@{
+    debugInfoHelper.End(traceRef);
+}
