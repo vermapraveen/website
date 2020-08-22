@@ -33,7 +33,12 @@ namespace Pkv.View.Pages
             CommonLogic cl = new CommonLogic(hostingEnvironment, _githubConfigs);
             List<BlogIntroViewModel> items = await cl.GetListOfBlogs();
 
-            BlogUniqueName = items.Where(x => !x.IsDraft).OrderBy(x => x.PublishedDate).FirstOrDefault().Slug;
+            BlogUniqueName = GetLatestBlogSlug(items);
+        }
+
+        private static string GetLatestBlogSlug(List<BlogIntroViewModel> items)
+        {
+            return items.Where(x => !x.IsDraft).OrderBy(x => x.PublishedDate).FirstOrDefault().Slug;
         }
     }
 }
