@@ -51,7 +51,7 @@ namespace Pkv.View.Pages.Shared
             return items;
         }
 
-        public async Task<BlogDataViewModel> GetBlogData(string blogUniqueName)
+        public async Task<BlogDataViewModel> GetBlogData(string uniqueName)
         {
 
             string blogContent;
@@ -66,7 +66,7 @@ namespace Pkv.View.Pages.Shared
             {
                 var refTrace1 = _debugInfoHelper.Start("GetBlogData.Network");
                 GithubFileProvider githubFileProvider = new GithubFileProvider();
-                blogContent = await githubFileProvider.GetFile($"{blogUniqueName}.md", _githubConfigs);
+                blogContent = await githubFileProvider.GetFile($"{uniqueName}.md", _githubConfigs);
                 _debugInfoHelper.End(refTrace1);
             }
 

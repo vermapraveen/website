@@ -24,12 +24,12 @@ namespace Pkv.View.Components
             this.debugInfoHelper = debugInfoHelper;
             _githubConfigs = githubOptions.Value;
         }
-        public async Task<IViewComponentResult> InvokeAsync(string blogUniqueName)
+        public async Task<IViewComponentResult> InvokeAsync(string uniqueName)
         {
             var trace = debugInfoHelper.Start("BlogPageVc.Model");
             CommonLogic cl = new CommonLogic(hostingEnvironment, _githubConfigs, debugInfoHelper);
 
-            BlogDataViewModel blogData = await cl.GetBlogData(blogUniqueName);
+            BlogDataViewModel blogData = await cl.GetBlogData(uniqueName);
 
             debugInfoHelper.End(trace);
 

@@ -9,7 +9,7 @@ namespace Pkv.View.Components
     {
         public IViewComponentResult Invoke(string uniqueName)
         {
-            return View("Default", new ContextViewModel { BlogUniqueName = uniqueName });
+            return View("Default", new ContextViewModel { UniqueName = uniqueName });
         }
     }
 }

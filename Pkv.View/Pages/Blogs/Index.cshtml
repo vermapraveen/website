@@ -1,11 +1,11 @@
-﻿@page "{catName?}"
+﻿@page "{uniqueName?}"
 @model Pkv.View.Pages.blogs.IndexModel
 @inject Pkv.Common.IDebugInfoHelper debugInfoHelper
 
 @{
-    var traceRef = debugInfoHelper.Start($"Blogs/{@Model.BlogUniqueName}");
+    var traceRef = debugInfoHelper.Start($"Blogs/{@Model.UniqueName}");
 }
-@await Component.InvokeAsync("BlogPage", new { blogUniqueName = Model.BlogUniqueName })
+@await Component.InvokeAsync("BlogPage", new { uniqueName = Model.UniqueName })
 
 @{
     debugInfoHelper.End(traceRef);

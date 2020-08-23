@@ -2,6 +2,6 @@
 {
     public class ContextViewModel
     {
-        public string BlogUniqueName { get; set; }
+        public string UniqueName { get; set; }
     }
 }

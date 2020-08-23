@@ -6,10 +6,10 @@
     var traceRef = debugInfoHelper.Start("IndexView");
 }
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Praveen Verma";
 }
 
-@await Component.InvokeAsync("BlogPage", new { blogUniqueName = Model.BlogUniqueName })
+@await Component.InvokeAsync("BlogPage", new { uniqueName = Model.UniqueName })
 
 
 @{

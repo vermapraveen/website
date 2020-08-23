@@ -19,7 +19,7 @@ namespace Pkv.View.Pages
         private readonly GithubConfigModel _githubConfigs;
 
         [BindProperty]
-        public string BlogUniqueName { get; set; }
+        public string UniqueName { get; set; }
 
         public IndexModel(IWebHostEnvironment hostingEnvironment, IOptions<GithubConfigModel> githubOptions, IDebugInfoHelper debugInfoHelper)
         {
@@ -36,7 +36,7 @@ namespace Pkv.View.Pages
             CommonLogic cl = new CommonLogic(hostingEnvironment, _githubConfigs, _debugInfoHelper);
             List<BlogIntroViewModel> items = await cl.GetListOfBlogs();
 
-            BlogUniqueName = GetLatestBlogSlug(items);
+            UniqueName = GetLatestBlogSlug(items);
             _debugInfoHelper.End(traceRef);
         }
 

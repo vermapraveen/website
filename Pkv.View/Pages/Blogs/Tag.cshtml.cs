@@ -32,7 +32,7 @@ namespace Pkv.View.Pages.blogs
         }
         public async System.Threading.Tasks.Task OnGetAsync(string catName)
         {
-            var traceRef = _debugInfoHelper.Start("ByTagModel");
+            var traceRef = _debugInfoHelper.Start("Blogs.Tags.Model");
 
             CommonLogic cl = new CommonLogic(hostingEnvironment, _githubConfigs, _debugInfoHelper);
             List<BlogIntroViewModel> items = await cl.GetListOfBlogs();
