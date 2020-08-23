@@ -1,5 +1,9 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.IO;
+using System.Net.Http;
 using System.Threading.Tasks;
+
+using static System.Environment;
 
 namespace Pkv.Github.Common
 {
@@ -7,10 +11,22 @@ namespace Pkv.Github.Common
     {
         public async Task<string> GetFile(string fileName, GithubConfigModel githubConfig)
         {
+            string folderPath = githubConfig.ContentFolderPath;
+
+            var savedFolderPath = GetFolderPath(SpecialFolder.UserProfile, SpecialFolderOption.DoNotVerify);
+            string appDataPath = Path.Combine(savedFolderPath, $"data{folderPath}/{fileName}");
+            Console.Out.WriteLine($"path to read {appDataPath}");
+
+            if (File.Exists(appDataPath))
+            {
+                Console.Out.WriteLine($"File exist in data folder");
+                return await File.ReadAllTextAsync(appDataPath);
+            }
+
+            Console.Out.WriteLine($"File from Github");
             string githubBaseUrl = "https://api.github.com/repos";
             string userName = githubConfig.UserName;
             string repoName = githubConfig.RepoName;
-            string folderPath = githubConfig.ContentFolderPath;
             string token = githubConfig.Token;
 
             string filePath = $"{githubBaseUrl}/{userName}/{repoName}/contents{folderPath}/{fileName}";
@@ -24,16 +40,33 @@ namespace Pkv.Github.Common
 
             var response = await httpClient.SendAsync(request);
             var content = await response.Content.ReadAsStringAsync();
+
+            Console.Out.WriteLine($"got file from github");
+
+            await File.WriteAllTextAsync(appDataPath, content);
+            Console.Out.WriteLine($"saved to data folder");
 
             return content;
         }
 
         public async Task<string> GetBlogList(string fileName, GithubConfigModel githubConfig)
         {
+            string folderPath = "";
+
+            var savedFolderPath = GetFolderPath(SpecialFolder.UserProfile, SpecialFolderOption.DoNotVerify);
+            string appDataPath = Path.Combine(savedFolderPath, $"data{folderPath}/{fileName}");
+            Console.Out.WriteLine($"path to read {appDataPath}");
+
+            if (File.Exists(appDataPath))
+            {
+                Console.Out.WriteLine($"File exist in data folder");
+                return await File.ReadAllTextAsync(appDataPath);
+            }
+
+            Console.Out.WriteLine($"File from Github");
             string githubBaseUrl = "https://api.github.com/repos";
             string userName = githubConfig.UserName;
             string repoName = githubConfig.RepoName;
-            string folderPath = "";
             string token = githubConfig.Token;
 
             string filePath = $"{githubBaseUrl}/{userName}/{repoName}/contents{folderPath}/{fileName}";
@@ -47,6 +80,11 @@ namespace Pkv.Github.Common
 
             var response = await httpClient.SendAsync(request);
             var content = await response.Content.ReadAsStringAsync();
+
+            Console.Out.WriteLine($"got file from github");
+
+            await File.WriteAllTextAsync(appDataPath, content);
+            Console.Out.WriteLine($"saved to data folder");
 
             return content;
         }

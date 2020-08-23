@@ -13,6 +13,13 @@ namespace Pkv.Common
         public long End;
     }
 
+    public interface IDebugInfoHelper
+    {
+        void End(DebugInfo dbgInfo);
+        void ConsolePrintFormattedDebugInfo();
+        DebugInfo Start(string tag);
+        void Reset();
+    }
 
     [ExcludeFromCodeCoverage]
     public class DebugInfoHelper : IDebugInfoHelper
