@@ -3,8 +3,7 @@
 @inject Pkv.Common.IDebugInfoHelper debugInfoHelper
 
 @{
-    debugInfoHelper.Reset();
-    var traceRef = debugInfoHelper.Start("IndexPage");
+    var traceRef = debugInfoHelper.Start("IndexView");
 }
 @{
     ViewData["Title"] = "Home";

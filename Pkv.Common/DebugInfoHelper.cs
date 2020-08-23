@@ -18,7 +18,6 @@ namespace Pkv.Common
         void End(DebugInfo dbgInfo);
         void ConsolePrintFormattedDebugInfo();
         DebugInfo Start(string tag);
-        void Reset();
     }
 
     [ExcludeFromCodeCoverage]
@@ -27,7 +26,6 @@ namespace Pkv.Common
         List<DebugInfo> debugData;
         public DebugInfoHelper()
         {
-            Console.Out.WriteLine("Init DebugInfoHelper Singleton");
             debugData = new List<DebugInfo>();
         }
         public DebugInfo Start(string tag)
@@ -45,7 +43,7 @@ namespace Pkv.Common
         {
             try
             {
-                Console.Out.WriteLine("Printing Debug Info...");
+                Console.Out.WriteLine("Printing Trace >>>>");
 
                 var parentSpan = debugData.OrderBy(x => x.Start).Take(1).FirstOrDefault();
                 var maxDuration = parentSpan.End - parentSpan.Start;
@@ -70,7 +68,7 @@ namespace Pkv.Common
                             .Append(GetTagToPrint(info.ops, maxLengthOfTag.Value))
                             .Append(GetStartAtToPrint(info.startAt))
                             .Append(GetDurationToPrint(info.duration))
-                            .Append($"  {info.duration * 100 / maxPercentage}%")
+                            //.Append($"  {info.duration * 100 / maxPercentage}%")
                             .Append($"  {info.milliSec} ms")
                             .AppendLine();
                 }
@@ -111,12 +109,6 @@ namespace Pkv.Common
             {
                 arr[i] = value;
             }
-        }
-
-        public void Reset()
-        {
-            debugData.Clear();
-            debugData = new List<DebugInfo>();
         }
     }
 }

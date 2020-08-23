@@ -2,14 +2,12 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+
 using Pkv.Common;
 using Pkv.Github.Common;
-using Pkv.View.Pages.Shared;
 using Pkv.View.Pages.Shared.ViewModels;
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Pkv.View.Components
 {
@@ -27,15 +25,12 @@ namespace Pkv.View.Components
 
         }
 
-        public async System.Threading.Tasks.Task<IViewComponentResult> InvokeAsync()
+        public IViewComponentResult Invoke(IEnumerable<BlogIntroViewModel> blogIntros)
         {
-            var trace = debugInfoHelper.Start("BlogListVC Model");
-
-            CommonLogic cl = new CommonLogic(hostingEnvironment, _githubConfigs, debugInfoHelper);
-            List<BlogIntroViewModel> items = await cl.GetListOfBlogs();
-
+            var trace = debugInfoHelper.Start("BlogListVc.Model");
             debugInfoHelper.End(trace);
-            return View(items.Where(x => !x.IsDraft));
+
+            return View(blogIntros);
         }
     }
 }

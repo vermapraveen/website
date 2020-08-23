@@ -15,15 +15,12 @@ namespace Pkv.Github.Common
 
             var savedFolderPath = GetFolderPath(SpecialFolder.UserProfile, SpecialFolderOption.DoNotVerify);
             string appDataPath = Path.Combine(savedFolderPath, $"data{folderPath}/{fileName}");
-            Console.Out.WriteLine($"path to read {appDataPath}");
 
             if (File.Exists(appDataPath))
             {
-                Console.Out.WriteLine($"File exist in data folder");
                 return await File.ReadAllTextAsync(appDataPath);
             }
 
-            Console.Out.WriteLine($"File from Github");
             string githubBaseUrl = "https://api.github.com/repos";
             string userName = githubConfig.UserName;
             string repoName = githubConfig.RepoName;
@@ -41,11 +38,7 @@ namespace Pkv.Github.Common
             var response = await httpClient.SendAsync(request);
             var content = await response.Content.ReadAsStringAsync();
 
-            Console.Out.WriteLine($"got file from github");
-
             await File.WriteAllTextAsync(appDataPath, content);
-            Console.Out.WriteLine($"saved to data folder");
-
             return content;
         }
 
@@ -55,15 +48,12 @@ namespace Pkv.Github.Common
 
             var savedFolderPath = GetFolderPath(SpecialFolder.UserProfile, SpecialFolderOption.DoNotVerify);
             string appDataPath = Path.Combine(savedFolderPath, $"data{folderPath}/{fileName}");
-            Console.Out.WriteLine($"path to read {appDataPath}");
 
             if (File.Exists(appDataPath))
             {
-                Console.Out.WriteLine($"File exist in data folder");
                 return await File.ReadAllTextAsync(appDataPath);
             }
 
-            Console.Out.WriteLine($"File from Github");
             string githubBaseUrl = "https://api.github.com/repos";
             string userName = githubConfig.UserName;
             string repoName = githubConfig.RepoName;
@@ -81,11 +71,7 @@ namespace Pkv.Github.Common
             var response = await httpClient.SendAsync(request);
             var content = await response.Content.ReadAsStringAsync();
 
-            Console.Out.WriteLine($"got file from github");
-
             await File.WriteAllTextAsync(appDataPath, content);
-            Console.Out.WriteLine($"saved to data folder");
-
             return content;
         }
     }

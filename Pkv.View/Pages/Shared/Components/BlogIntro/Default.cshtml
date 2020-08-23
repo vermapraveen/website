@@ -17,7 +17,7 @@
             }
             @foreach (var tag in @Model.tags)
             {
-                <a href="https://www.praveenkv.com">@string.Format(" {0} ", tag)</a>
+                <a href="/blogs/tag/@tag">@string.Format(" {0} ", tag)</a>
             }
 
             @if (@Model.read)

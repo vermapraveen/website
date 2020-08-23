@@ -1,48 +1,44 @@
-﻿using System;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Options;
+
+using Pkv.Common;
 using Pkv.Github.Common;
 using Pkv.View.Pages.Shared;
 using Pkv.View.Pages.Shared.ViewModels;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using Pkv.Common;
 
-namespace Pkv.View.Pages
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Pkv.View.Pages.blogs
 {
-    public class IndexModel : PageModel
+    public class TagModel : PageModel
     {
         private readonly IWebHostEnvironment hostingEnvironment;
         private readonly IDebugInfoHelper _debugInfoHelper;
         private readonly GithubConfigModel _githubConfigs;
 
         [BindProperty]
-        public string BlogUniqueName { get; set; }
+        public IEnumerable<BlogIntroViewModel> Blogs { get; set; }
 
-        public IndexModel(IWebHostEnvironment hostingEnvironment, IOptions<GithubConfigModel> githubOptions, IDebugInfoHelper debugInfoHelper)
+        public TagModel(IWebHostEnvironment hostingEnvironment, IOptions<GithubConfigModel> githubOptions, IDebugInfoHelper debugInfoHelper)
         {
             this.hostingEnvironment = hostingEnvironment;
             _debugInfoHelper = debugInfoHelper;
             _githubConfigs = githubOptions.Value;
 
         }
-
-        public async System.Threading.Tasks.Task OnGetAsync()
+        public async System.Threading.Tasks.Task OnGetAsync(string catName)
         {
-            var traceRef = _debugInfoHelper.Start("IndexModel");
+            var traceRef = _debugInfoHelper.Start("ByTagModel");
 
             CommonLogic cl = new CommonLogic(hostingEnvironment, _githubConfigs, _debugInfoHelper);
             List<BlogIntroViewModel> items = await cl.GetListOfBlogs();
 
-            BlogUniqueName = GetLatestBlogSlug(items);
+            Blogs = items.Where(x => !x.IsDraft && x.GetTags.Contains(catName));
             _debugInfoHelper.End(traceRef);
-        }
-
-        private static string GetLatestBlogSlug(List<BlogIntroViewModel> items)
-        {
-            return items.Where(x => !x.IsDraft).OrderBy(x => x.PublishedDate).FirstOrDefault().Slug;
         }
     }
 }

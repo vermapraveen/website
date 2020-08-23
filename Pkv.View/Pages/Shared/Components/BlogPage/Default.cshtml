@@ -4,7 +4,7 @@
 @model Pkv.View.Pages.Shared.ViewModels.BlogDataViewModel
 
 @{
-    var traceRef = debugInfoHelper.Start("BlogPageVc.BlogIntroVc");
+    var traceRef = debugInfoHelper.Start("BlogPageVc.View");
 }
 @await Component.InvokeAsync("BlogIntro", new Pkv.View.Models.BlogIntroModel
 { title = Model.BlogIntro.Title, slug = Model.BlogIntro.Slug, tags = Model.BlogIntro.GetTags, intro = Model.BlogIntro.Intro })

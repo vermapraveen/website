@@ -26,7 +26,7 @@ namespace Pkv.View.Components
         }
         public async Task<IViewComponentResult> InvokeAsync(string blogUniqueName)
         {
-            var trace = debugInfoHelper.Start("BlogPageViewComponent Model");
+            var trace = debugInfoHelper.Start("BlogPageVc.Model");
             CommonLogic cl = new CommonLogic(hostingEnvironment, _githubConfigs, debugInfoHelper);
 
             BlogDataViewModel blogData = await cl.GetBlogData(blogUniqueName);

@@ -1,9 +1,9 @@
-﻿@page
-@model Pkv.View.Pages.BlogsModel
+﻿@page "{catName?}"
+@model Pkv.View.Pages.blogs.TagModel
 @inject Pkv.Common.IDebugInfoHelper debugInfoHelper
 
 @{
-    var traceRef = debugInfoHelper.Start("BlogsView");
+    var traceRef = debugInfoHelper.Start("Blogs.Tags.View");
 }
 
 @await Component.InvokeAsync("BlogList", new { blogIntros = Model.Blogs })

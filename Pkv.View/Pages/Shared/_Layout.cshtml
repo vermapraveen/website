@@ -29,15 +29,13 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            @*@{
-                debugInfoHelper.Reset();
+            @{
                 var traceRef = debugInfoHelper.Start("RenderBody");
-            }*@
+            }
             @RenderBody()
-            @*@{
+            @{
                 debugInfoHelper.End(traceRef);
-                Console.Out.WriteLine(debugInfoHelper.GetFormattedDebugInfo());
-            }*@
+            }
         </main>
     </div>
 
