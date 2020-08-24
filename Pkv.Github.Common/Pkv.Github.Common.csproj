@@ -5,4 +5,12 @@
     <UserSecretsId>df2f4b2c-ee03-4246-ae78-ba726d08392b</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="YamlDotNet" Version="8.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pkv.Common\Pkv.Common.csproj" />
+  </ItemGroup>
+
 </Project>

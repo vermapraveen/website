@@ -29,6 +29,7 @@ namespace Pkv.View
             services.Configure<GithubConfigModel>(Configuration.GetSection(
                                        GithubConfigModel.GithubSection));
             services.AddRazorPages();
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +52,7 @@ namespace Pkv.View
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }

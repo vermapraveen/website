@@ -6,7 +6,7 @@ using System.Linq;
 
 using YamlDotNet.Serialization;
 
-namespace Pkv.View
+namespace Pkv.Common
 {
     public static class MarkdownExtensions
     {
